@@ -5,16 +5,18 @@ private:
   /* data */
 protected:
   uint8_t ssPort;   // Saves port of encoder
+  bool _reverseCheck;
 public:
   long enCount;     // Records current count after encoder is read
   long enPrevCount; // Records count before a read count is read
-  
   bool clearFlag;   // Checks if encoders was cleared
-  LS7366R(int ss) {
+
+  LS7366R(int ss, bool reverseCheck = false) {
     enCount = 0;
     enPrevCount = 0;
     clearFlag = 1;
     ssPort = ss;
+    _reverseCheck = reverseCheck;
     pinMode(ssPort, OUTPUT);
     digitalWrite(ssPort, 1);
   }

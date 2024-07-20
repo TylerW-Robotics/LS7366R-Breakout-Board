@@ -82,6 +82,9 @@ void LS7366R::readEncoder() {
   digitalWrite(ssPort, 1);     // Terminate SPI conversation 
 
   enCount = count_value;
+  if (_reverseCheck) {
+   enCount *= -1;
+  }
 }
 
 void LS7366R::clearEncoderCount() {
